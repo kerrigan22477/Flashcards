@@ -1,6 +1,7 @@
 from card import Card
 import datetime
 import json
+from json.decoder import JSONDecodeError
 
 class Deck:
     def __init__(self):
@@ -18,9 +19,13 @@ class Deck:
         for card in self.cards:
             my_date = datetime.datetime.now()
             if my_date > card.next_review:
-                print(card.getTerm())
+                print('--------------------------------------------------------------------------------')
+                print('\n\n' + card.getTerm() + '\n\n')
+                print('--------------------------------------------------------------------------------')
                 input('press enter for answer\n')
-                print(card.getDefinition())
+                print('--------------------------------------------------------------------------------')
+                print('\n\n' + card.getDefinition() + '\n\n')
+                print('--------------------------------------------------------------------------------')
                 user_answer = input('type c for correct, n for not correct\n')
                 if user_answer == 'c':
                     card.update_review_time(True)
@@ -34,6 +39,9 @@ class Deck:
 
     def load(self, filename):
         with open(filename, 'r') as infile:
-            data = json.load(infile)
-        self.cards = [Card(card['term'], card['definition'], datetime.datetime.fromisoformat(card['next_review'])) for card in data]
+            try:
+                data = json.load(infile)
+                self.cards = [Card(card['term'], card['definition'], datetime.datetime.fromisoformat(card['next_review'])) for card in data]
+            except JSONDecodeError:
+                self.cards = []
 

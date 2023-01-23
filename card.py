@@ -15,8 +15,8 @@ class Card:
 
     def update_review_time(self, correct):
         if correct:
-            self.next_review = datetime.datetime.now() + datetime.timedelta(days=self.lastTime+3)
-            self.lastTime = self.lastTime + 3
+            self.next_review = datetime.datetime.now() + datetime.timedelta(days=self.lastTime*2)
+            self.lastTime = self.lastTime*2
         else:
             self.next_review = datetime.datetime.now() + datetime.timedelta(days=1)
             self.lastTime = 1
