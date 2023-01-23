@@ -1,7 +1,8 @@
 from deck import Deck
 
 deck = Deck()
-deck.load("flashcard_deck.json")
+set_name = input('Type the name of the json deck file you would like to use\n')
+deck.load(set_name)
 studying = True
 
 while studying:
@@ -29,5 +30,5 @@ while studying:
     if answer == 'f':
         studying = False
 
-    deck.save("flashcard_deck.json")
+    deck.save(set_name)
 
