@@ -5,11 +5,9 @@ deck.load("flashcard_deck.json")
 studying = True
 
 while studying:
-    answer = input('Do you want to add cards or study?, S = study, A = add, F = finished\n')
-    print(answer)
+    answer = input('Do you want to add cards or study?, s = study, a = add, f = finished\n')
 
-    if answer == 'A':
-        deck = Deck()
+    if answer == 'a':
         adding = True
 
         while adding:
@@ -18,13 +16,17 @@ while studying:
             deck.add(term, definition)
 
             cont = input('do you want to add more terms? type A for add, any other button to stop\n')
-            if cont != 'A':
+            if cont != 'a':
                 adding = False
 
-    if answer == 'S':
+    if answer == 's':
         deck.study()
+        cont = input('do you want to remove any cards? r = remove, any other button otherwise\n')
+        if cont == 'r':
+            term = input('type the term you want to remove\n')
+            deck.remove(term)
 
-    if answer == 'F':
+    if answer == 'f':
         studying = False
 
     deck.save("flashcard_deck.json")

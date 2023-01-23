@@ -1,10 +1,10 @@
 import datetime
 
 class Card:
-    def __init__(self, term, definition):
-        self.term = ''
-        self.definition = ''
-        self.next_review = datetime.datetime.now()
+    def __init__(self, term, definition, next_review):
+        self.term = term
+        self.definition = definition
+        self.next_review = next_review
         self.lastTime = 1
 
     def getTerm(self):

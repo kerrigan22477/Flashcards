@@ -7,16 +7,21 @@ class Deck:
         self.cards = []
 
     def add(self, term, definition):
-        c = Card(term, definition)
+        c = Card(term, definition, datetime.datetime.now())
         self.cards.append(c)
+
+    def remove(self, term):
+        # make new list w/out flashcard
+        self.cards = [x for x in self.cards if x.term != term]
 
     def study(self):
         for card in self.cards:
-            if datetime.datetime.now() < card.next_review():
+            my_date = datetime.datetime.now()
+            if my_date > card.next_review:
                 print(card.getTerm())
-                input('press enter for answer')
+                input('press enter for answer\n')
                 print(card.getDefinition())
-                user_answer = input('type c for correct, n for not correct')
+                user_answer = input('type c for correct, n for not correct\n')
                 if user_answer == 'c':
                     card.update_review_time(True)
                 else:
