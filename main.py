@@ -6,7 +6,10 @@ deck.load(set_name)
 studying = True
 
 while studying:
-    answer = input('Do you want to add cards or study?, s = study, a = add, f = finished\n')
+    answer = input('Do you want to add cards or study?, s = study, a = add, f = finished d = display deck\n')
+
+    if answer == 'd':
+        deck.display_deck()
 
     if answer == 'a':
         adding = True
@@ -21,7 +24,11 @@ while studying:
                 adding = False
 
     if answer == 's':
-        deck.study()
+        type = input('do you want to study all the cards or the ones you are due to review? a = all')
+        if type == 'a':
+            deck.study_all()
+        else:
+            deck.study()
         cont = input('do you want to remove any cards? r = remove, any other button otherwise\n')
         if cont == 'r':
             term = input('type the term you want to remove\n')
