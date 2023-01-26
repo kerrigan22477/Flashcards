@@ -17,7 +17,8 @@ class Deck:
 
     def display_deck(self):
         for card in self.cards:
-            print(card.getTerm() + ': ' + card.getDefinition() + '\n')
+            x = str(card.next_review)
+            print(x.split(" ", 1)[0] + ' ' + card.getTerm() + ': ' + card.getDefinition() + '\n')
 
 
     def study(self):
