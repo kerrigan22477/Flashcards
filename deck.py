@@ -32,11 +32,14 @@ class Deck:
                 print('--------------------------------------------------------------------------------')
                 print('\n\n' + card.getDefinition() + '\n\n')
                 print('--------------------------------------------------------------------------------')
-                user_answer = input('type c for correct, n for not correct\n')
+                user_answer = input('type c for correct, n for incorrect\n')
                 if user_answer == 'c':
                     card.update_review_time(True)
                 else:
                     card.update_review_time(False)
+            leave = input('do you want to exit, e = exit')
+            if leave == 'e':
+                break
 
     def study_all(self):
         for card in self.cards:
