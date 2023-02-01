@@ -15,7 +15,7 @@ class Card:
             self.next_review = datetime.datetime.now() + datetime.timedelta(days=self.lastTime*2)
             self.lastTime = self.lastTime*2
         else:
-            self.next_review = datetime.datetime.now() + datetime.timedelta(days=1)
+            #self.next_review = datetime.datetime.now() + datetime.timedelta(days=1)
             self.lastTime = 1
 
     def to_dict(self):

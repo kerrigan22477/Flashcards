@@ -64,6 +64,7 @@ class Deck:
                 leave = input('do you want to exit, e = exit')
                 if leave == 'e':
                     break
+
         print('Number of cards remaining to be studied today: ' + str(remaining))
 
     def study_all(self):
