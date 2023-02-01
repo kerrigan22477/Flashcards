@@ -7,11 +7,8 @@ class Card:
         self.next_review = next_review
         self.lastTime = 1
 
-    def getTerm(self):
-        return self.term
-
-    def getDefinition(self):
-        return self.definition
+    def update_definition(self, new):
+        self.definition = new
 
     def update_review_time(self, correct):
         if correct:

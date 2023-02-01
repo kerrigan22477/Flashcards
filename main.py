@@ -28,7 +28,8 @@ while studying:
         if type == 'a':
             deck.study_all()
         else:
-            deck.study()
+            num = input('do you want to study a specfic # of cards? any letter if not')
+            deck.study(num)
         cont = input('do you want to remove any cards? r = remove, any other button otherwise\n')
         if cont == 'r':
             term = input('type the term you want to remove\n')
