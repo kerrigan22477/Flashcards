@@ -40,35 +40,31 @@ class Deck:
         except ValueError:
             amount = len(cards)
 
-        while amount >= 0:
+        remaining = len(cards) - amount
+        while amount > 0:
             # only want to pull random cards from list of cards for today
-            idx = np.random.randint(0, len(cards))
-            card = cards[idx]
-            print(amount)
-            print('--------------------------------------------------------------------------------')
-            print('\n\n' + card.term + '\n\n')
-            print('--------------------------------------------------------------------------------')
-            input('press enter for answer\n')
-            print('--------------------------------------------------------------------------------')
-            print('\n\n' + card.definition + '\n\n')
-            print('--------------------------------------------------------------------------------')
-            user_answer = input('type c for correct, n for incorrect\n')
-            if user_answer == 'c':
-                amount -= 1
-                # need to update review time in self.cards and deck of currently being studied
-                name = (x for x in self.cards if x == card)
-                print(name)
-                deck_card = self.cards.index(name)
-                deck_card.update_review_time(True)
-                card.update_review_time(True)
-                cards.pop(idx)
-            else:
-                card.update_review_time(False)
-            leave = input('do you want to exit, e = exit')
-            if leave == 'e':
-                break
-        num_remaining = len(cards)
-        print('Number of cards remaining to be studied today: ' + str(num_remaining))
+            idx = np.random.randint(0, len(self.cards))
+            card = self.cards[idx]
+            if card.next_review < datetime.datetime.now():
+                print(amount)
+                print('--------------------------------------------------------------------------------')
+                print('\n\n' + card.term + '\n\n')
+                print('--------------------------------------------------------------------------------')
+                input('press enter for answer\n')
+                print('--------------------------------------------------------------------------------')
+                print('\n\n' + card.definition + '\n\n')
+                print('--------------------------------------------------------------------------------')
+                user_answer = input('type c for correct, n for incorrect\n')
+                if user_answer == 'c':
+                    amount -= 1
+                    # need to update review time in self.cards and deck of currently being studied
+                    card.update_review_time(True)
+                else:
+                    card.update_review_time(False)
+                leave = input('do you want to exit, e = exit')
+                if leave == 'e':
+                    break
+        print('Number of cards remaining to be studied today: ' + str(remaining))
 
     def study_all(self):
         for card in self.cards:
