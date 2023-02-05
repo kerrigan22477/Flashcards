@@ -9,7 +9,7 @@ class Deck:
         self.cards = []
 
     def add(self, term, definition):
-        c = Card(term, definition, datetime.datetime.now())
+        c = Card(term, definition, datetime.datetime.now(), 1)
         self.cards.append(c)
 
     def remove(self, term):
@@ -91,7 +91,7 @@ class Deck:
         with open(filename, 'r') as infile:
             try:
                 data = json.load(infile)
-                self.cards = [Card(card['term'], card['definition'], datetime.datetime.fromisoformat(card['next_review'])) for card in data]
+                self.cards = [Card(card['term'], card['definition'], datetime.datetime.fromisoformat(card['next_review']), card['lastTime']) for card in data]
             except JSONDecodeError:
                 self.cards = []
 

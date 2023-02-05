@@ -1,11 +1,11 @@
 import datetime
 
 class Card:
-    def __init__(self, term, definition, next_review):
+    def __init__(self, term, definition, next_review, time):
         self.term = term
         self.definition = definition
         self.next_review = next_review
-        self.lastTime = 1
+        self.lastTime = time
 
     def update_definition(self, new):
         self.definition = new
@@ -22,7 +22,8 @@ class Card:
         return {
             'term': self.term,
             'definition': self.definition,
-            'next_review': self.next_review.isoformat()
+            'next_review': self.next_review.isoformat(),
+            'lastTime': self.lastTime
         }
 
 
